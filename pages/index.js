@@ -1,8 +1,7 @@
-/* pages/index.js */
-import axios from "axios";
 import { ethers } from "ethers";
-import Web3Modal from "web3modal";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import Web3Modal from "web3modal";
 
 import { marketplaceAddress } from "../config";
 
@@ -25,8 +24,8 @@ export default function Home() {
     const data = await contract.fetchMarketItems();
 
     /*
-     *  map over 'items returned from smart contract' and "format"
-     *  them as well as "fetch" their token metadata
+     *  map over items returned from smart contract and format
+     *  them as well as fetch their token metadata
      */
     const items = await Promise.all(
       data.map(async (i) => {
@@ -60,7 +59,7 @@ export default function Home() {
       signer
     );
 
-    /* user will be prompted to pay the asking prices to complete the transaction */
+    /* user will be prompted to pay the asking proces to complete the transaction */
     const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price,
